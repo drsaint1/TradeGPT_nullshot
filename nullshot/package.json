@@ -1,0 +1,37 @@
+{
+  "name": "tradegpt-nullshot",
+  "version": "1.0.0",
+  "description": "TradeGPT MCP Servers and Agent for Nullshot Hacks Season 0",
+  "type": "module",
+  "scripts": {
+    "build": "npm run build:market-data && npm run build:trading && npm run build:portfolio",
+    "build:market-data": "tsc -p mcp-servers/market-data/tsconfig.json",
+    "build:trading": "tsc -p mcp-servers/trading/tsconfig.json",
+    "build:portfolio": "tsc -p mcp-servers/portfolio/tsconfig.json",
+    "dev:market-data": "tsx mcp-servers/market-data/index.ts",
+    "dev:trading": "tsx mcp-servers/trading/index.ts",
+    "dev:portfolio": "tsx mcp-servers/portfolio/index.ts",
+    "clean": "rm -rf mcp-servers/*/dist"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "nullshot",
+    "ai-agent",
+    "trading",
+    "cryptocurrency",
+    "somnia",
+    "blockchain"
+  ],
+  "author": "TradeGPT Team",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "axios": "^1.7.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.12",
+    "tsx": "^4.20.6",
+    "typescript": "^5.4.5"
+  }
+}

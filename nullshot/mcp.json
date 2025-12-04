@@ -1,0 +1,48 @@
+{
+  "mcpServers": {
+    "tradegpt-market-data": {
+      "command": "node",
+      "args": ["./mcp-servers/market-data/dist/index.js"],
+      "description": "Real-time cryptocurrency market data provider",
+      "tools": [
+        "get_market_price",
+        "get_market_snapshot",
+        "get_multiple_assets",
+        "check_rsi_signal"
+      ],
+      "env": {}
+    },
+    "tradegpt-trading": {
+      "command": "node",
+      "args": ["./mcp-servers/trading/dist/index.js"],
+      "description": "Trading execution and risk management tools",
+      "tools": [
+        "create_trade_setup",
+        "calculate_position_size",
+        "calculate_risk_reward",
+        "validate_trade_parameters",
+        "get_trade_setup",
+        "list_pending_trades"
+      ],
+      "env": {}
+    },
+    "tradegpt-portfolio": {
+      "command": "node",
+      "args": ["./mcp-servers/portfolio/dist/index.js"],
+      "description": "Portfolio tracking and performance analytics",
+      "tools": [
+        "get_portfolio_balance",
+        "get_portfolio_stats",
+        "get_open_positions",
+        "get_trade_history",
+        "calculate_portfolio_value",
+        "get_performance_metrics",
+        "add_trade_record"
+      ],
+      "env": {}
+    }
+  },
+  "version": "1.0.0",
+  "name": "TradeGPT MCP Configuration",
+  "description": "Model Context Protocol configuration for TradeGPT AI trading assistant"
+}

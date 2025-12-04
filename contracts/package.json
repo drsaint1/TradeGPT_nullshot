@@ -1,0 +1,28 @@
+{
+  "name": "tradegpt-contracts",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "hardhat compile",
+    "test": "hardhat test",
+    "lint": "solhint 'contracts/**/*.sol'",
+    "deploy:somnia": "hardhat run scripts/deployFactory.ts --network somniaTestnet",
+    "create-account": "hardhat run scripts/createAccount.ts --network somniaTestnet"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.0.2"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-chai-matchers": "^2.0.6",
+    "@nomicfoundation/hardhat-network-helpers": "^1.0.9",
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "@typechain/ethers-v6": "^0.5.0",
+    "@typechain/hardhat": "^9.0.0",
+    "chai": "^4.3.10",
+    "ethers": "^6.8.0",
+    "hardhat": "^2.19.1",
+    "solhint": "^3.5.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}

@@ -1,0 +1,86 @@
+services:
+  # Backend API Service
+  - type: web
+    name: tradegpt-backend
+    runtime: node
+    region: oregon
+    plan: starter
+    buildCommand: cd nullshot && npm install && npm run build && cd ../backend && npm install && npm run build
+    startCommand: cd backend && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 4000
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: COINGECKO_API_KEY
+        sync: false
+      - key: MARKET_DATA_API
+        value: https://api.coingecko.com/api/v3
+      - key: SOMNIA_RPC_URL
+        value: https://dream-rpc.somnia.network
+      - key: SOMNIA_CHAIN_ID
+        value: 50312
+      - key: SOMNIA_FACTORY_ADDRESS
+        value: "0xE1c29362B5e79697dc90db10D2C72A030b0CCa9f"
+      - key: SOMNIA_ROUTER_ADDRESS
+        value: "0xB40C0e3Ddd3eF65B3CCe619cB48928E5a3E8fFA1"
+      - key: SOMNIA_USDC_ADDRESS
+        value: "0xdC58352930EfC7Eb13AFB281f6AbC6B26aC276dC"
+      - key: SOMNIA_ETH_ADDRESS
+        value: "0xF0cADD95ca96b492A0b27dA643170B5670e788eF"
+      - key: SOMNIA_BTC_ADDRESS
+        value: "0xE3741dDBdC45403bEdf5E701800267BFf90e2deA"
+      - key: SOMNIA_SOL_ADDRESS
+        value: "0xA9D7c1A16354AB5E54a2c9c28281E10c41C4D091"
+    healthCheckPath: /health
+    autoDeploy: true
+
+  # Frontend Static Site
+  - type: web
+    name: tradegpt-frontend
+    runtime: static
+    region: oregon
+    plan: starter
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: frontend/dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_BACKEND_URL
+        fromService:
+          type: web
+          name: tradegpt-backend
+          envVarKey: RENDER_EXTERNAL_URL
+      - key: VITE_SOMNIA_RPC
+        value: https://dream-rpc.somnia.network
+      - key: VITE_SOMNIA_CHAIN_ID
+        value: 50312
+      - key: VITE_FACTORY_ADDRESS
+        value: "0xE1c29362B5e79697dc90db10D2C72A030b0CCa9f"
+      - key: VITE_ROUTER_ADDRESS
+        value: "0xB40C0e3Ddd3eF65B3CCe619cB48928E5a3E8fFA1"
+      - key: VITE_USDC_ADDRESS
+        value: "0xdC58352930EfC7Eb13AFB281f6AbC6B26aC276dC"
+      - key: VITE_WETH_ADDRESS
+        value: "0xF0cADD95ca96b492A0b27dA643170B5670e788eF"
+      - key: VITE_WBTC_ADDRESS
+        value: "0xE3741dDBdC45403bEdf5E701800267BFf90e2deA"
+      - key: VITE_WSOL_ADDRESS
+        value: "0xA9D7c1A16354AB5E54a2c9c28281E10c41C4D091"
+      - key: VITE_WALLETCONNECT_ID
+        sync: false
+    headers:
+      - path: /*
+        name: X-Frame-Options
+        value: SAMEORIGIN
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
+    autoDeploy: true
