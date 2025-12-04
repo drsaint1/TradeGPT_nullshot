@@ -41,7 +41,6 @@ services:
   - type: web
     name: tradegpt-frontend
     runtime: static
-    region: oregon
     plan: starter
     buildCommand: cd frontend && npm install && npm run build
     staticPublishPath: frontend/dist
