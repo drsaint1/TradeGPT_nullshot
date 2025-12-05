@@ -49,10 +49,7 @@ services:
         destination: /index.html
     envVars:
       - key: VITE_BACKEND_URL
-        fromService:
-          type: web
-          name: tradegpt-backend
-          envVarKey: RENDER_EXTERNAL_URL
+        value: https://tradegpt-backend-qw1a.onrender.com/api
       - key: VITE_SOMNIA_RPC
         value: https://dream-rpc.somnia.network
       - key: VITE_SOMNIA_CHAIN_ID
