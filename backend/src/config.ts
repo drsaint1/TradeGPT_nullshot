@@ -5,7 +5,7 @@ export const appConfig = {
   openAiKey: process.env.OPENAI_API_KEY ?? '',
   aiModel: process.env.OPENAI_MODEL ?? 'gpt-4o-mini',
   geminiApiKey: process.env.GEMINI_API_KEY ?? '',
-  geminiModel: process.env.GEMINI_MODEL ?? 'gemini-2.0-flash-exp',
+  geminiModel: process.env.GEMINI_MODEL ?? 'gemini-1.5-flash',
   marketDataEndpoint: (() => {
     const raw = process.env.MARKET_DATA_API ?? '';
     return raw.startsWith('http') ? raw : 'https://api.coingecko.com/api/v3';
